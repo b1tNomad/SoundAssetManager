@@ -1,0 +1,24 @@
+{
+  "name": "easy-sound-manager",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personal sound workbench for game audio: library, desks, trim/split/merge, export to ogg",
+  "type": "module",
+  "scripts": {
+    "start": "node server/index.js",
+    "build": "esbuild client/src/main.jsx --bundle --minify --jsx=automatic --loader:.js=jsx --target=es2020 --define:process.env.NODE_ENV='\"production\"' --outfile=client/dist/app.js && esbuild client/src/fxWorker.js --bundle --minify --target=es2020 --outfile=client/dist/fx-worker.js",
+    "watch": "esbuild client/src/main.jsx --bundle --sourcemap --jsx=automatic --loader:.js=jsx --target=es2020 --outfile=client/dist/app.js --watch",
+    "dev": "npm run watch & esbuild client/src/fxWorker.js --bundle --sourcemap --target=es2020 --outfile=client/dist/fx-worker.js --watch & NO_OPEN=1 node --watch server/index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "optionalDependencies": {
+    "ffmpeg-static": "^5.2.0"
+  }
+}
